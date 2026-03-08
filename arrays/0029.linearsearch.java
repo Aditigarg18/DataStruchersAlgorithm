@@ -5,6 +5,6 @@ class Solution {
      for(int i=0;i<arr.length;i++){
          if(arr[i]==x)ans=i;
      }
-     return i;
+     return ans;
     }
 }
