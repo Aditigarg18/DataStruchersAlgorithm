@@ -2,7 +2,7 @@ class Solution {
     public int getSecondLargest(int[] arr) {
         // code here
         int maxi=0;
-        int second=0;
+        int second=-1;
         for(int i=0;i<arr.length;i++){
             maxi=Math.max(maxi,arr[i]);
         }
