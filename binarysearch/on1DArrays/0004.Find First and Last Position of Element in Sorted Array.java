@@ -1,44 +1,36 @@
+
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-
-        int n = nums.length;
-        int[] ans = { -1, -1 };
-
-        int low = 0, high = n - 1;
-
-        // 🔹 Find first occurrence
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-
-            if (nums[mid] >= target) {
-                high = mid - 1;
-            } else {
-                low = mid + 1;
+          int n=nums.length;
+        int left=0;
+        int right=n-1;
+        int ans[]={-1,-1};
+       while(left<=right){
+           int mid=left+(right-left)/2;
+                if(nums[mid]==target){
+                ans[0]=mid;
+                     right = mid - 1;
+                }
+                else if(nums[mid]>target)
+                 right=mid-1;
+                else{
+                   left=mid+1;
+                }
             }
 
-            if (nums[mid] == target) {
-                ans[0] = mid;
+      left=0;
+     right=n-1;
+       while(left<=right){
+        int mid=left+(right-left)/2;
+            if(nums[mid]==target){
+            ans[1]=mid;
+            left=mid+1;
             }
+            else if(nums[mid]<target)
+            left=mid+1;
+            else
+                 right=mid-1;
         }
-
-        low = 0;
-        high = n - 1;
-
-        // 🔹 Find last occurrence
-        while (low <= high) {
-            int mid = low + (high - low) / 2;
-
-            if (nums[mid] <= target) {
-                low = mid + 1;
-            } else {
-                high = mid - 1;
-            }
-
-            if (nums[mid] == target) {
-                ans[1] = mid;
-            }
-        }
-
         return ans;
     }
 }
