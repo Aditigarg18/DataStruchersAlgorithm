@@ -1,28 +1,24 @@
 class Solution {
     public int smallestDivisor(int[] nums, int threshold) {
-        int left = 1;                          // min divisor
-        int right = Arrays.stream(nums).max().getAsInt(); // max divisor
-
-        while (left < right) {
-            int mid = left + (right - left)/2;
-
-            if (canDivide(nums, mid, threshold)) {
-                right = mid;   // mid works → try smaller divisor
-            } else {
-                left = mid + 1; // mid too small → sum exceeds threshold
+        int left=1;
+        int right=Arrays.stream(nums).max().getAsInt();
+        while(left<right){
+            int mid=left+(right-left)/2;
+            if(possible(nums,mid,threshold)){
+                right=mid;
+            }
+            else{
+                left=mid+1;
             }
         }
-
-        return left;  // minimum divisor
+        return left;
     }
-
-    // Helper: check if sum of ceil(nums[i]/divisor) <= threshold
-    private boolean canDivide(int[] nums, int divisor, int threshold) {
-        int sum = 0;
-        for (int num : nums) {
-            sum += (num + divisor - 1)/divisor; // ceiling division
-        }
-        return sum <= threshold;
+    public boolean possible(int []nums,int mid ,int threshold){
+        int divisor=0;
+          for(int num:nums){
+       divisor=divisor+(num/mid); 
+       if(num%mid!=0)divisor++;
+          }
+          return divisor<=threshold;
     }
 }
-   
