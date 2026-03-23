@@ -1,29 +1,28 @@
 class Solution {
-      public boolean isAns(int[] nums, int k, int ans){
-        int sum = 0;
-        for(int num : nums){
-            sum += Math.ceil((double)num/ans); 
-        }
-        return sum<=k;
-    }
     public int smallestDivisor(int[] nums, int threshold) {
-        // Exact same as Leetcode - 875 KoKo Eating Bananas
-        int l = 1;
-        int r = Integer.MIN_VALUE;
-        for(int num : nums){
-            l = Math.min(l, num);
-            r = Math.max(r, num);
-        }
-        int ans = 0;
-        while(l<=r){
-            int mid = l+(r-l)/2;
-            if(isAns(nums, threshold, mid)){
-                ans = mid;
-                r = mid-1;
-            }else{
-                l = mid+1;
+        int left = 1;                          // min divisor
+        int right = Arrays.stream(nums).max().getAsInt(); // max divisor
+
+        while (left < right) {
+            int mid = left + (right - left)/2;
+
+            if (canDivide(nums, mid, threshold)) {
+                right = mid;   // mid works → try smaller divisor
+            } else {
+                left = mid + 1; // mid too small → sum exceeds threshold
             }
         }
-        return ans;
+
+        return left;  // minimum divisor
+    }
+
+    // Helper: check if sum of ceil(nums[i]/divisor) <= threshold
+    private boolean canDivide(int[] nums, int divisor, int threshold) {
+        int sum = 0;
+        for (int num : nums) {
+            sum += (num + divisor - 1)/divisor; // ceiling division
+        }
+        return sum <= threshold;
     }
 }
+   
