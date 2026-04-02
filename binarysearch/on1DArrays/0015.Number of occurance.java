@@ -23,7 +23,7 @@ class Solution {
       int start=0;
       int n=arr.length;
       int end=n-1;
-      int ans=0;
+      int ans=-1;
       while(start<=end){
           int mid=(start+end)/2;
           if(arr[mid]==target){
@@ -41,7 +41,8 @@ class Solution {
     }
     int countFreq(int[] arr, int target) {
         // code here
-    if(firstcount(arr,target)==-1 || lastcount(arr,target)==-1) return 0;
+    if(firstcount(arr,target)==-1 && lastcount(arr,target)==-1) return 0;
     return lastcount( arr, target)-firstcount(arr,target)+1;
     }
 }
+
