@@ -1,13 +1,11 @@
 class Solution {
     public ArrayList<Integer> nextLargerElement(int[] arr) {
-        // code here
-        //1.create an arrayList of all element of -1 intialized.
-        //2.start from last.
-        //[1, 3, 2, 4]
-     // st push(4)
-     //4 is last so -1.
-     //now 2
-     //st=[4,]
+        // 1.We created an array list of size n, and stored all element as -1.
+// 2.we created a deque. started the traversal from last, so
+// it easy to find the next greatest element.
+// 3. if  in stack the topmost element less than array’s current index 
+// value element-then pop .else return that element in arraylist ,
+// then push the element.
    int  n=arr.length;
      ArrayList<Integer>result=new ArrayList<>(Collections.nCopies(n,-1));
      Deque<Integer>stack=new ArrayDeque<>();
