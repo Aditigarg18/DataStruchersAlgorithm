@@ -1,0 +1,17 @@
+class Solution {
+    public void rotate(int[] arr) {
+        // code here
+   int n = arr.length;
+        
+        int last = arr[n - 1]; // store last element
+        
+        // shift elements right
+        for (int i = n - 1; i > 0; i--) {
+            arr[i] = arr[i - 1];
+        }
+        
+        // put last element at front
+        arr[0] = last;
+    }
+    
+}
