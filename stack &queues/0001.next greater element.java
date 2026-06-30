@@ -1,23 +1,21 @@
 class Solution {
     public ArrayList<Integer> nextLargerElement(int[] arr) {
-        // 1.We created an array list of size n, and stored all element as -1.
-// 2.we created a deque. started the traversal from last, so
-// it easy to find the next greatest element.
-// 3. if  in stack the topmost element less than array’s current index 
-// value element-then pop .else return that element in arraylist ,
-// then push the element.
-   int  n=arr.length;
-     ArrayList<Integer>result=new ArrayList<>(Collections.nCopies(n,-1));
-     Deque<Integer>stack=new ArrayDeque<>();
-     for(int i=n-1;i>=0;i--){
-         while(!stack.isEmpty()&&stack.peek()<=arr[i]){
-             stack.pop();
-         }
-         if(!stack.isEmpty()){
-             result.set(i,stack.peek());
-         }
-         stack.push(arr[i]);
-     }
-     return result;
+        // code here
+        int n=arr.length;
+        int nge[]=new int[n];
+        Stack<Integer>st=new Stack<>();
+        for(int i=n-1;i>=0;i--){
+            while(!st.isEmpty() && st.peek()<=arr[i]){
+                st.pop();
+            }
+            if(st.isEmpty())
+             nge[i]=-1;
+             else nge[i]=st.peek();
+            st.push(arr[i]);
+        }
+        ArrayList<Integer>ans=new ArrayList<>();
+        for(int x:nge)
+        ans.add(x);
+        return ans;
     }
 }
