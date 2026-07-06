@@ -23,3 +23,21 @@ class Solution {
     return -1;
 }
        }
+//better-will not work for negative
+class Solution {
+    public int singleNumber(int[] nums) {
+     int maxi=nums[0];
+     for(int i=0;i<nums.length;i++){
+        maxi=Math.max(nums[i],maxi);
+     }   
+     int[]hash=new int[maxi+1];
+     for(int i=0;i<nums.length;i++){
+        hash[nums[i]]++;
+     }
+     for(int i=0;i<nums.length;i++){
+        if(hash[nums[i]]==1)
+           return nums[i];
+     }
+     return -1;
+    }
+}
