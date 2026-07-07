@@ -11,3 +11,17 @@ class Solution {
         return j;
     }
 }
+class Solution {
+    public int removeDuplicates(int[] nums) {
+            HashSet<Integer>st=new HashSet<>();
+            int index=0;
+            for(int num:nums){
+                if(!st.contains(num)){
+                    st.add(num);
+                    nums[index]=num;
+                    index++;
+                }
+            }
+            return index;
+    }
+}
