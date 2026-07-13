@@ -23,3 +23,22 @@ class Solution {
         return arr[n-2];
     }
 }
+
+class Solution {
+    public int getSecondLargest(int[] arr) {
+        // code here
+        int maxi=arr[0];
+        int maxi1=-1;
+        int n=arr.length;
+        for(int i=1;i<n;i++){
+            if(maxi<arr[i]){
+            maxi1=maxi;
+            maxi=arr[i];
+        }
+           else if(arr[i]<maxi && arr[i] > maxi1 )
+                   maxi1=arr[i];
+        }
+        return maxi1;
+    }
+    
+}
