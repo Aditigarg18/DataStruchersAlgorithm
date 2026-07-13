@@ -15,3 +15,11 @@ class Solution {
         return second;
     }
 }
+class Solution {
+    public int getSecondLargest(int[] arr) {
+        // code here
+        Arrays.sort(arr);
+        int n=arr.length;
+        return arr[n-2];
+    }
+}
